@@ -1,28 +1,32 @@
-                            #QUESTION 9
+# QUESTION 9
+# Counting the growth rings of a tree is a good way to tell the age of a tree. Each growth ring counts as one year. Use a Canvas widget to draw how growth rings of a 5-year-old tree might look. Then user create_text() method, number each growth ring starting from the center and working outward with the age in years associated with that ring.
 
-# Write a program with a function that accepts a string as an argument and returns the number of vowels that the string contains. The application should have another function that accepts a string as an argument and returns the number of consonants that the string contains. The application should let the user enter a string, and should display the number of vowels and the number of consonants it contains.
+from tkinter import *
 
-def calculate_vowels(string):
-    vowels = 'aeiou'
-    number_of_vowels= 0
-    for i in string:
-        if i.lower() in vowels:
-            number_of_vowels +=1
-    return number_of_vowels
+root = Tk()
 
 
-def calculate_consonants(string):
-    consonants = 'bcdfghjklmnpqrstvwxyz'
-    number_of_consonants = 0
-    for j in string:
-        if j.lower() in consonants:
-            number_of_consonants +=1
-    return number_of_consonants
+width = 400
 
-user_input = input("Enter a string of characters")
+height = 400
+center_X=width/2
+center_Y=height/2
 
-vowels = calculate_vowels(user_input)
-consonants = calculate_consonants(user_input)
 
-print("The number of vowels are " + str(vowels)  +  " and" + " " + "The number of consonants are " + str(consonants))
+age=5
+gap=(center_X/age)-1
+distance=gap
+
+canvas = Canvas(root, width=width, height=height)
+
+for i in range(1,age+1):
+
+    canvas.create_oval(center_X-distance, center_Y-distance, center_X+distance, center_Y+distance)
+    canvas.create_text(center_X, center_Y-distance+10, text='{} year'.format(i))
+    distance+=gap
+
+canvas.pack()
+
+
+mainloop()
 

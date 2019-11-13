@@ -1,23 +1,32 @@
-                                    # QUESTION 1
+# QUESTION 1
+# Write a program that reads the contents of a file_in_read file. The program should create a dictionary in which the keys are the individual words found in the file and the values are the number of times each word appears. The program should either display the frequency of each word or create a second file containing a list of each word and its frequency
 
-# A cookie recipe calls for the following ingredients:
-# 1.5 cups of sugar
-# 1 cup of butter
-# 2.75 cups of flour
-# The recipe produces 48 cookies with this amount of ingredients. Write a program that asks the user how many cookies he/she wants to make, then displays the number of cups of each ingredient needed for the specified number of cookies.
+# SOLUTION
 
-# SOLUTION 1
-# Global variables
-cups_of_sugar = 1.5
-cups_of_butter = 1
-cups_of_flour = 2.75
-cookies = 48
+file=open('words.txt','w')
+user_input=input('please input the words you want to type:')
+file.write(user_input)
+file.write('\n')
 
-number_of_cookies = int(input("How many cookies you want to make?"))
+file.close()
+file=open('words.txt','r')
+file_in_read=file.read()
+file_in_read=file_in_read.replace('\n',' ')
+word_list=file_in_read.split(' ')
+for word in word_list:
+    word_1=''
+    for i in range(len(word)):
+        if word[i].isalpha():
+            word_1+=word[i].lower()
+    word_list[word_list.index(word)]=word_1
+while '' in word_list:
+    word_list.remove('')
+dic={}
+for word in word_list:
+    if word not in dic:
+        dic[word]=1
+    else:
+        dic[word]+=1
 
-cups_of_sugar_required = (number_of_cookies * cups_of_sugar)/cookies
-cups_of_butter_required = (number_of_cookies * cups_of_butter)/cookies
-cups_of_flour_required = (number_of_cookies * cups_of_flour)/cookies
-
-print("For the specified number of cookies, you will need " + " " + str(format(cups_of_sugar_required, '.2f')) + "cups of sugar " + str(format(cups_of_butter_required,'.2f')) + ""  + "cups of butter " + str(format(cups_of_flour_required,'.2f')) + " " +  "cups of flour")
-
+for word in dic:
+    print(format(word),format(dic[word]))

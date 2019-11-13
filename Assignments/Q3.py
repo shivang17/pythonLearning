@@ -1,30 +1,39 @@
-                            # QUESTION 3
+# QUESTION 3
+# Write a class named Employee that holds the following data about an employee in attributes: name, ID number, department, and job title.
+# Once you have written the class, write a program that creates three Employee objects to hold the following data:
 
-# The month of February normally has 28 days. But if it is a leap year, February has 29 days. Write a program that asks the user to enter a year. The program should then display the number of days in February that year. Use the following criterion to identify leap years:
 
 
-# Determine whether the year is divisible by 100, if it is, then it is a leap year if and only if it is also divisible by 400.
- 	
-# If the year is not divisible by 100, then it is a leap year if and only if it is divisible by 4.
 
-def is_leap_year(year):
-    leap_year_message = " "
-    if year %100 ==0:
-        if year %400 ==0:
-            leap_year_message += "is a leap year"
-        else:
-            leap_year_message += "is not a leap year"
+class Employee:
+    def __init__(self,name,ID,department,job):
+        self.__name=name
+        self.__ID=ID
+        self.__department=department
+        self.__job=job
+
         
-            
-    else :
-        if year % 4 ==0:
-            leap_year_message += "is a leap year"
-        else:
-            leap_year_message += "is not a leap year"
-            
-    
-    return leap_year_message
+    def get_name(self):
+        return self.__name
+    def get_department(self):
+        return self.__department
+    def get_ID(self):
+        return self.__ID
+    def get_job(self):
+        return self.__job
+    def __str__(self):
+        return 'Name:' + self.__name +'\n' + 'ID:' + str(self.__ID) +'\n' +\
+               'Department:'+ self.__department + '\n' + \
+               'Job:' + self.__job
+def display(emp):
+   # print(emp.get_name(),emp.get_ID(),emp.get_department(),emp.get_job())
+    print(emp)
+def main():
+    Susan=Employee('Susan Meyers', '47899', 'Accounting', 'Vice President')
+    Mark= Employee('Mark Jones', '39119', 'IT', 'Programmer')
+    Joy= Employee('Joy Rogers', '81774', 'Maufacturing', 'Engineer')
+    display(Susan)
+    display(Mark)
+    display(Joy)
 
-user_input_leap_year = int(input("Please enter a year of your choice"))
-
-print(str(user_input_leap_year) + is_leap_year(user_input_leap_year))
+main()

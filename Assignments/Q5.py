@@ -1,28 +1,63 @@
-                            # QUESTION 5
+# QUESTION 5
+# Write an employee class with the data attributes defined in Problem 3. Next, write a class named ProductionWorker that is a subclass of the employee class, that should keep the data attributes for the following pieces of information:
+ 	
+# Shift number (an integer, e.g., 1, 2, 3, etc.)
+ 		
+# Hourly pay rate.
 
-# A prime number is a number that is only evenly divisible by itself and 	
-# 1. Write a Boolean function named is_prime which takes an integer as an argument and returns true if the argument is a prime number or false otherwise. Use the function in a program that prompts the user to enter a number then displays the message whether the number of primes. Write another program that displays all of the prime numbers from 1 to 100. The program should have a loop that calls the is_prime() function.
-
-number = int(input("Enter the number: "))
-
-def is_prime(number):
-    if number <2:
-        return False
-    elif number ==2:
-        return True
+class Employee:
+    def __init__(self,name,ID,department,job):
+        self.__name=name
+        self.__ID=ID
+        self.__department=department
+        self.__job=job
+    def set_Name(self,name):
+        self.__name=name
+    def set_ID(self,ID):
+        self.__ID=ID
+    def set_department(self,department):
+        self.__department=department
+    def set_ID(self,job):
+        self.__job=job
+    def get_name(self):
+        return self.__name
+    def get_department(self):
+        return self.__department
+    def get_ID(self):
+        return self.__ID
+    def get_job(self):
+        return self.__job
+class ProductionWorker(Employee):
+    def __init__(self,name,ID,department,job,shiftNumber,hourlyPayrate):
+        Employee.__init__(self,name,ID,department,job)
+        self.__shiftNumber=shiftNumber
+        self.__hourlyPayrate=hourlyPayrate
+    def set_shiftNumber(self,shiftNumber):
+        self.__shiftNumber=shiftNumber
+    def get_shiftNumber(self):
+        return self.__shiftNumber
+    def set_hourlyPayrate(self,hourlyPayrate):
+        self.__hourlyPayrate=hourlyPayrate
+    def get_hourlyPayrate(self):
+        return self.__hourlyPayrate
     
-    else:
-        for i in range(2,number-1):
-            if number% i ==0:
-                return False
-        return True
-
-print(is_prime(number))
-
-# 2nd part of the program
-prime_numbers = []
-for i in range(1,101):
-    if is_prime(i):
-        prime_numbers.append(i)
-# This will display all prime numbers between 1 and 100 in the form of a list using the previous function is_prime
-print(prime_numbers)
+def display(emp):
+    print(emp.get_name(),emp.get_ID(),emp.get_department(),emp.get_job(), emp.get_shiftNumber(),emp.get_hourlyPayrate())
+    
+def main():
+    answer='y'
+    while answer=='y':
+        name=input('Enter a Name:')
+        ID=input('Enter an ID:')
+        department=input('Enter a Department:')
+        job=input('Enter a Job:')
+        shiftNumber=int(input('Enter a shift number:'))
+        hourlyPayRate=input('Enter hourly pay rate')
+        if shiftNumber==1 or shiftNumber==2:
+            Person=ProductionWorker(name,ID,department,job,shiftNumber,hourlyPayRate)
+            display(Person)
+            answer=input('enter y to continue the process')
+        else:
+            print('you input a wrong shift number')
+            answer=input('enter y to continue the process')
+main()

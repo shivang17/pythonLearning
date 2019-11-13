@@ -1,37 +1,19 @@
-                                # QUESTION 6
-
-# Write a program that generates 100 random numbers and keeps a count of how many of those random numbers are even, and how many are odd.
+# QUESTION 6
+# Write a recursive program to implement the Ackermann’s function. 	Ackermann’s function is a recursive mathematical algorithm that can be used to test how well a system optimizes its performance of recursion. Design a function Ackermann(m, 	n) with the following logic:
  	
-
-
-
-import random
-
-def is_even(number):
-    if number %2 ==0:
-        return True
+# If m = 0, then return n+1
+ 		
+# If n = 0, then 	Ackermann(m-1, n)
+ 		
+# Otherwise, return Ackermann(m-1, Ackermann(m, n-1))
+ 	
+def ackermann(m,n):
+    if m==0:
+        return n+1
+    elif n==0:
+        return ackermann(m-1,n)
     else:
-        return False
-
-
-# Main Function
-
+        return ackermann(m-1, ackermann(m,n-1))
 def main():
-    even = 0
-    odd = 0
-
-    for i in range(100):
-        number = random.randint(1,100)
-
-
-
-        if is_even(number):
-            even+=1
-        else:
-            odd +=1
-
-    print("There are " + str(even) + " even numbers")
-    print("There are " + str(odd) + " odd numbers")
-
-
+    print(ackermann(100,0))
 main()
